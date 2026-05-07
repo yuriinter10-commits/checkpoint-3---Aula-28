@@ -1,7 +1,12 @@
+import json
+import uuid
+
 class Conta:
-    def __init__(self):
-        self._saldo = 0.0
-       
+    def __init__(self, numero, cliente):
+            self._saldo = 0.0
+            self.numero = numero
+            self.cliente = cliente
+  
     def get_saldo(self):
         return self._saldo
     
