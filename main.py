@@ -2,6 +2,13 @@ import os
 from Cliente import Cliente
 from ContaPoupanca import ContaPoupanca
 
+C_VERDE = '\033[92m'
+C_AMARELO = '\033[93m'
+C_VERMELHO = '\033[91m'
+C_CIANO = '\033[96m'
+C_BOLD = '\033[1m'
+C_RESET = '\033[0m'
+
 def limpar_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -9,19 +16,30 @@ def menu():
     # Função menu
     limpar_tela()
     print("\n" + "="*20)
-    print(">>>>>🏦 La Casa de Papel 🏦<<<<<")
-    print("="*20)
-    print("[1] Depósito")
-    print("[2] Saque")
-    print("[3] Extrato")
-    print("[4] Sair")
+    print(f"{C_BOLD}{C_CIANO}   🏦 BANCO.PY 🏦{C_RESET}")
+    print('='*20)
+    print(f"{C_BOLD}[1]{C_RESET} 📥 Depósito")
+    print(f"{C_BOLD}[2]{C_RESET} 📤 Saque")
+    print(f"{C_BOLD}[3]{C_RESET} Extrato")
+    print(f"{C_VERMELHO}[4]{C_RESET} 🔙 Sair")
     print("="*20)
     return input("Escolha uma opção: ")
 
 # Variáveis iniciais do sistema
 saldo = 0
 extrato = ""
+if __name__ == "__main__":
+           
+    titular = input(f"{C_AMARELO}>>>DIGITE O NOME DO TITULAR<<<{C_RESET}")
+    cpf = input(f"{C_AMARELO}>>>DIGITE O SEU CPF<<<{C_RESET}")
+    numero_conta = input(f"{C_AMARELO}>>>DIGITE O NOMERO DA CONTA<<<{C_RESET}")
 
+    novo_cliente = Cliente(titular, cpf)
+
+    nova_conta_poupanca = ContaPoupanca(numero_conta, novo_cliente)
+
+    print(f"{novo_cliente}")
+    print(f"{nova_conta_poupanca}")
 
 while True:
     opcao = menu()
@@ -68,18 +86,6 @@ while True:
     else:
         print("Opção inválida! Por favor, tente novamente.")
 
-    if __name__ == "__main__":
     
-       
-        titular = input("Digite o nome do titular: ")
-        cpf = input("Digite o nome do cpf: ")
-        numero_conta = input("Digite o numero da conta: ")
-
-    novo_cliente = Cliente(titular, cpf)
-
-    nova_conta_poupanca = ContaPoupanca(numero_conta, novo_cliente)
-
-    print(f"{novo_cliente}")
-    print(f"{nova_conta_poupanca}")
 
 
